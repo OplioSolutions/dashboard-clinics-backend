@@ -123,7 +123,5 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
   handleError(err, res)
 })
 
-const PORT = Number(process.env.PORT || 8787)
-app.listen(PORT, () => {
-  console.log(`Backend listening on http://localhost:${PORT}`)
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
