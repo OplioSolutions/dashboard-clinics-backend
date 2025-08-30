@@ -30,7 +30,7 @@ export class ChatController extends BaseController {
       const { conversation_id, message, channel, type } = validatedData
       
       const companyId = this.getTenantId(req)
-      const userId = req.user?.id
+      const userId = req.user?.auth_user_id
 
       // 1. Verificar se a conversa existe e está ativa
       const { data: conversation, error: conversationError } = await this.getSupabase(req)
@@ -63,7 +63,7 @@ export class ChatController extends BaseController {
           selectedChannel = channelsUsed[0]
         } else {
           // Fallback: determinar baseado nos dados do cliente
-          const client = conversation.clients
+          const client = conversation.clients as any
           if (client.phone) {
             selectedChannel = Channel.WHATSAPP
           } else if (client.instagram_handle) {

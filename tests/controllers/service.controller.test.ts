@@ -22,7 +22,7 @@ describe('ServiceController', () => {
     }
     
     mockReq = {
-      supabase: mockSupabaseClient,
+      supabase: mockSupabaseClient as any,
       tenant: {
         company_id: '123e4567-e89b-12d3-a456-426614174000' // UUID válido para testes
       },
@@ -31,7 +31,9 @@ describe('ServiceController', () => {
         role: 'admin',
         auth_user_id: 'test-user-id',
         company_id: '123e4567-e89b-12d3-a456-426614174000',
-        profile_id: 'test-profile-id'
+        profile_id: 'test-profile-id',
+        name: 'Test User',
+        email: 'test@example.com'
       }
     }
 

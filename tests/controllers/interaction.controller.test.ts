@@ -24,7 +24,7 @@ describe('InteractionController', () => {
     }
     
     mockReq = {
-      supabase: mockSupabaseClient,
+      supabase: mockSupabaseClient as any,
       tenant: {
         company_id: '123e4567-e89b-12d3-a456-426614174001'
       },

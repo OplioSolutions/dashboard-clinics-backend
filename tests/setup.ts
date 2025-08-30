@@ -51,5 +51,46 @@ export const mockSupabaseClient = {
   from: jest.fn().mockImplementation(() => createMockQueryBuilder()),
   auth: {
     getUser: jest.fn()
-  }
+  },
+  supabaseUrl: 'http://localhost:54321',
+  supabaseKey: 'test-key',
+  realtime: {},
+  storage: {},
+  schema: {},
+  rest: {},
+  functions: {},
+  channel: jest.fn(),
+  getChannels: jest.fn(),
+  removeChannel: jest.fn(),
+  removeAllChannels: jest.fn()
+}
+
+// Helper para criar mock request
+export const createMockRequest = (overrides = {}) => ({
+  body: {},
+  params: {},
+  query: {},
+  headers: {},
+  user: {
+    auth_user_id: 'test-user-id',
+    company_id: 'test-company-id',
+    role: 'admin' as const,
+    profile_id: 'test-profile-id',
+    name: 'Test User',
+    email: 'test@example.com'
+  },
+  tenant: {
+    company_id: 'test-company-id'
+  },
+  supabase: mockSupabaseClient,
+  ...overrides
+})
+
+// Helper para criar mock response
+export const createMockResponse = () => {
+  const res: any = {}
+  res.status = jest.fn().mockReturnValue(res)
+  res.json = jest.fn().mockReturnValue(res)
+  res.send = jest.fn().mockReturnValue(res)
+  return res
 }

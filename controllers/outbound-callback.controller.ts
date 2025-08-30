@@ -67,7 +67,7 @@ export class OutboundCallbackController extends BaseController {
       // Adicionar metadata se fornecido
       if (metadata || external_message_id) {
         updateData.metadata = {
-          ...(interaction.metadata || {}),
+          ...((interaction as any).metadata || {}),
           ...(metadata || {}),
           ...(external_message_id && { external_message_id })
         }

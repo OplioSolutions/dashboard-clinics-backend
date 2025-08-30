@@ -30,7 +30,7 @@ export abstract class BaseController {
 
   protected createQuery(req: Request) {
     const supabase = this.getSupabase(req)
-    const query = supabase.from(this.tableName)
+    const query = supabase.from(this.tableName) as any
     return query.eq('company_id', this.getTenantId(req))
   }
 

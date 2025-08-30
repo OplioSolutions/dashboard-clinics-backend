@@ -36,7 +36,7 @@ describe('ConversationController', () => {
     mockSupabaseClient.from.mockReturnValue(mockQueryBuilder)
     
     // Criar controller com mock do Supabase
-    controller = new ConversationController(mockSupabaseClient)
+    controller = new ConversationController(mockSupabaseClient as any)
   })
 
   describe('startConversation', () => {

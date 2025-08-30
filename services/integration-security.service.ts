@@ -97,7 +97,7 @@ export class IntegrationSecurityService {
       decipher.setAAD(Buffer.from(companyId, 'utf8'))
       decipher.setAuthTag(tag)
       
-      let decrypted = decipher.update(encrypted, 'hex', 'utf8')
+      let decrypted = decipher.update(encrypted.toString('hex'), 'hex', 'utf8')
       decrypted += decipher.final('utf8')
       
       return decrypted

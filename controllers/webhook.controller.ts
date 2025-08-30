@@ -104,7 +104,7 @@ export class WebhookController extends BaseController {
         user_id: 'webhook-system', // ID especial para identificar requisições via webhook
         role: 'system'
       }
-    } as Request
+    } as unknown as Request
 
     return tenantReq
   }

@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { ChatController } from '../../controllers/chat.controller'
 import { OutboundMessageService } from '../../services/outbound-message.service'
 import { Channel, MessageDirection, MessageStatus, MessageType } from '../../schemas/message'
-import { createMockSupabaseClient, createMockRequest, createMockResponse } from '../setup'
+import { mockSupabaseClient, createMockRequest, createMockResponse } from '../setup'
 
 // Mock do OutboundMessageService
 jest.mock('../../services/outbound-message.service')
@@ -15,9 +15,9 @@ describe('ChatController', () => {
   let mockOutboundService: jest.Mocked<OutboundMessageService>
 
   beforeEach(() => {
-    mockSupabase = createMockSupabaseClient()
+    mockSupabase = mockSupabaseClient
     controller = new ChatController(mockSupabase)
-    mockRequest = createMockRequest()
+    mockRequest = createMockRequest() as any
     mockResponse = createMockResponse()
 
     // Setup mock do OutboundMessageService
@@ -53,7 +53,14 @@ describe('ChatController', () => {
     beforeEach(() => {
       mockRequest.body = validPayload
       mockRequest.tenant = { company_id: 'test-company' }
-      mockRequest.user = { id: 1 }
+      mockRequest.user = { 
+        auth_user_id: 'test-user-id',
+        company_id: 'test-company-id',
+        role: 'admin' as const,
+        profile_id: 'test-profile-id',
+        name: 'Test User',
+        email: 'test@example.com'
+      }
 
       // Mock do Supabase para conversation
       mockSupabase.from.mockImplementation((table: string) => {

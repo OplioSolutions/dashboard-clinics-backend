@@ -1,7 +1,7 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js'
 
-export function withTenantFilter<T extends SupabaseClient['from']>(
-  query: T,
+export function withTenantFilter(
+  query: any,
   company_id: string
 ) {
   return query.eq('company_id', company_id)
