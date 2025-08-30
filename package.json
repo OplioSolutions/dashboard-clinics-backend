@@ -4,9 +4,9 @@
   "description": "Backend for Dashboard Clinics",
   "main": "server.ts",
  "scripts": {
-  "dev": "nodemon server.ts",           // para rodar local no TS direto
-  "build": "tsc -p tsconfig.json",      // compila TS -> dist/
-  "start": "node dist/server.js",       // roda o JS já compilado (produção)
+  "dev": "nodemon server.ts",
+  "build": "tsc -p tsconfig.json",
+  "start": "node dist/server.js",
   "test": "jest",
   "test:watch": "jest --watch",
   "test:coverage": "jest --coverage"
