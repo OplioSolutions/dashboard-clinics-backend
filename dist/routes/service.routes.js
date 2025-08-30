@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.serviceRoutes = void 0;
+const express_1 = require("express");
+const service_controller_1 = require("../controllers/service.controller");
+const roles_1 = require("../middleware/roles");
+const router = (0, express_1.Router)();
+const controller = new service_controller_1.ServiceController();
+router.get('/', (req, res) => controller.list(req, res));
+router.post('/', roles_1.requireAdmin, (req, res) => controller.create(req, res));
+router.get('/:id', (req, res) => controller.getById(req, res));
+router.patch('/:id', roles_1.requireAdmin, (req, res) => controller.update(req, res));
+exports.serviceRoutes = router;
